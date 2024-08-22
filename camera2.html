@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webcam Capture</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #webcam {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #captureButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #startButton {
+            position: absolute;
+            bottom: 20px;
+            left: 10%;
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #closeButton {
+            position: absolute;
+            bottom: 20px;
+            right: 10%;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #capturedPhoto {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 30%;
+            z-index: 2;
+        }
+
+        #canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <video id="webcam" autoplay></video>
+    <button id="startButton">Start Camera</button>
+    <button id="captureButton" style="display: none;">Capture</button>
+    <button id="closeButton" style="display: none;">Close Video</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <img id="capturedPhoto  " alt="Captured Photo">
+    <script>
+        const video = document.getElementById('webcam');
+        const startButton = document.getElementById('startButton');
+        const captureButton = document.getElementById('captureButton');
+        const closeButton = document.getElementById('closeButton');
+        const canvas = document.getElementById('canvas');
+        const capturedPhoto = document.getElementById('capturedPhoto');
+        let stream = null;
+
+        // Function to start the camera
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (mediaStream) {
+                    video.srcObject = mediaStream;
+                    stream = mediaStream; // Store the stream for later use
+                    startButton.style.display = 'none'; // Hide the start button
+                    captureButton.style.display = 'block'; // Display the capture button
+                    closeButton.style.display = 'block'; // Display the close button
+                })
+                .catch(function (error) {
+                    console.error('Error accessing the webcam: ', error);
+                });
+        }
+
+        // Start the camera when the "Start Camera" button is clicked
+        startButton.addEventListener('click', startCamera);
+
+        // Capture a frame from the webcam feed
+        captureButton.addEventListener('click', function () {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Display the captured photo
+            capturedPhoto.src = canvas.toDataURL('image/jpeg');
+            capturedPhoto.style.display = 'block';
+        });
+
+        // Close the video
+        closeButton.addEventListener('click', function () {
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(function (track) {
+                    track.stop();
+                });
+                video.srcObject = null;
+                startButton.style.display = 'block'; // Display the start button
+                captureButton.style.display = 'none'; // Hide the capture button
+                closeButton.style.display = 'none'; // Hide the close button
+            }
+        });
+    </script>
+</body>
+</html>

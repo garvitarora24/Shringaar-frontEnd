@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.container{
+    height: 100vh;
+    background: url('/images/login.jpg');
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 6vh;
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.small{
+    /* margin-left: 45%; */
+    font-size: 10px;
+    background-color:#313866;
+    text-align: center;
+
+}
+.small h1{
+    font-size: 5.5vh;
+}
+.box{
+  
+    margin: auto;
+    margin-top: 5%;
+    padding: 5%;
+    width: 45%;
+    font-size: 18px;
+    background-color:rgb(49, 56, 102,0.8);
+   border-radius: 2vh;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+   text-align: center;
+   
+   
+}
+.login{
+    font-size: 3vh;
+}
+
+.login a{
+    color: #FE7BE5;
+}
+.box input{
+    width: 40%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 2%;
+    height: 35px;
+   margin-left: 3vh;
+   text-align: center;
+
+}
+
+
+
+.box input:focus{
+    outline: none;
+}
+.box p{
+    font-size: 2vh;
+
+}
+
+.btn{
+    background-color: white;
+    width: 15%;
+    height: 5vh;
+    margin-top: 2%;
+    font-size: 3vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+
+}
+.btn:hover{
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+.support{
+    font-size: 3vh;
+position: fixed;
+bottom: 0;
+width:10%;
+height: auto;
+right: 0;
+background-color:rgb(49, 56, 102,0.8);
+font-size: 2vh;
+padding: 1vh;
+border-top-left-radius: 1vh;
+
+}

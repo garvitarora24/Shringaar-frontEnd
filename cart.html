@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="cart.js"></script>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="icon" type="image/x-icon" href="/images/make-up (1).png">
+   
+  
+
+<script src="cart.js"></script>
+</head>
+
+<body>
+    <nav>
+        <h1 onclick="window.location.href='index.html'">श्रृंGAAR</h1>
+        <p>COSMETICS</p>
+    </nav>
+    <div class="links">
+        <a href="index.html">Home </a>- Cart
+    </div>
+    <div class="container">
+        <div class="container-left">
+            <div class="item" id="item1">
+                <div class="image">
+                    <img src="/images/lipsticks.webp" alt="" srcset="">
+                </div>
+                <div>
+                    LIPSTICK 4 SHADES
+                </div>
+                <div>
+                    <div class="wrapper">
+                        <span class="minus" onclick="decrease()">-</span>
+                        <span class="num" id="num1" >01</span>
+                        <span class="plus" onclick="increase()">+</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="price" id="price1" data-tag="InitialPrice">5</span>
+                </div>
+            </div>
+            <div class="item" id="item2">
+                <div class="image">
+                    <img src="/images/kajal.jpg" alt="" srcset="">
+                </div>
+                <div>
+                    LAKME KAJAL
+                </div>
+                <div>
+                    <div class="wrapper">
+                        <span class="minus"  onclick="decrease2()">-</span>
+                        <span class="num" id="num2">01</span>
+                        <span class="plus" onclick="increase2()" >+</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="price" id="price2">$5</span>
+                </div>
+            </div>
+            <div class="item" id="item3">
+                <div class="image">
+                    <img src="/images/FOUNDATION.jpg" alt="" srcset="">
+                </div>
+                <div>
+                    MAYBELLINE FOUNDATION
+                </div>
+                <div>
+                    <div class="wrapper">
+                        <span class="minus">-</span>
+                        <span class="num" id="num3">01</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="price" id="price3">$5</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-right">
+            <h1>CHECKOUT CART</h1>
+            <form action="">
+                <div class="images">
+                    <img src="/images/visa.png" alt="" style="width: 8vh;">
+                    <img src="/images/credit-card.png" style="width: 8vh;">
+                </div>
+                <label for="name">NAME</label>
+                <input type="text" name="name" id="name" placeholder="BANKING NAME"> <br>
+                <label for="card">
+                    CARD NUMBER
+                </label>
+                <input type="number" name="" id="card" placeholder="0000 0000 0000"> <br>
+                <label for="cvv">CVV</label>
+                <input type="number" name="cvv" id="cvv" placeholder="123"> <br>
+                <label for="expiry">EXPIRY DATE</label>
+                <input type="date" name="date" id="expiry"> <br>
+                
+                <input type="submit" value="CHECKOUT">
+
+            </form>
+        </div>
+
+    </div>
+    <script>
+    var a=parseInt(document.getElementById("num1").innerHTML);
+
+localStorage.setItem('cnt',1);
+localStorage.setItem('price',1);
+// var p=1;
+// var a=1;
+
+var p1=1;
+var a1=1;
+
+
+function increase(){
+var a=parseInt(localStorage.getItem('cnt'));
+var p=parseInt(localStorage.getItem('price'));
+   
+    if (a <20) {
+    a++;
+    a = (a < 10) ? "0" + a : a;
+    num1.innerText=a;
+   localStorage.setItem('cnt',a);
+//    console.log("updating value of a:" +localStorage.getItem("cnt"))
+    
+    p = 5 * a;
+    price1.innerText = "$" + p;
+}
+
+
+
+}
+
+function decrease(){
+ 
+    if (a > 0) {
+    a--;
+    a = (a < 10) ? "0" + a : a;
+    num1.innerText = a;
+    p = 5 * a;
+    price1.innerText = "$" + p;
+}
+if(a==0){
+    document.getElementById("item1").style.display='none';
+}
+
+}
+
+function increase2(){
+   
+    if (a1 <20) {
+    a1++;
+    a1 = (a1 < 10) ? "0" + a1 : a1;
+    num2.innerText=a1;
+   localStorage.setItem("cnt",a1);
+   console.log("updating value of a:" +localStorage.getItem("cnt"))
+    
+    p1 = 5 * a1;
+    price2.innerText = "$" + p1;
+}
+
+
+
+}
+
+function decrease2(){
+ 
+    if (a1 > 0) {
+    a1--;
+    a1 = (a1 < 10) ? "0" + a1 : a1;
+    num2.innerText = a1;
+    p1 = 5 * a1;
+    price2.innerText = "$" + p1;
+}
+if(a1==0){
+    document.getElementById("item2").style.display='none';
+}
+
+}
+    </script>
+
+
+
+
+
+   
+</body>
+
+</html>
